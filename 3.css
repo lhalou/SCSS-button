@@ -1,0 +1,128 @@
+@charset "UTF-8";
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/*一般CSS都会加这三个属性*/
+body {
+  background: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* border: 1px solid red;不加上面三个属性，通过border会看到bug，即body无法全屏*/
+  min-height: 100vh;
+}
+
+.button-wrapper button {
+  padding: 10px 20px;
+  font-size: 20px;
+  border-radius: 4px;
+  border: none;
+  color: #fff;
+  margin: 0 40px;
+}
+
+.button-wrapper button:first-child {
+  /**当写一个重复使用的东西，就把他封装到函数里**/
+  background: #55ACEE;
+  box-shadow: 0px 5px 0px 0px #1689e0;
+  /*使用darken把颜色加深*/
+}
+
+.button-wrapper button:first-child:hover {
+  animation-duration: .5s;
+  /**时间用时**/
+  animation-name: x;
+  /**所进行的转换**/
+}
+
+.button-wrapper button:nth-child(2) {
+  /*颜色使用两次，最好保存到一个变量里，便于修改*/
+  /**当写一个重复使用的东西，就把他封装到函数里**/
+  background: #2ECC71;
+  box-shadow: 0px 5px 0px 0px #208e4e;
+  /*使用darken把颜色加深*/
+}
+
+.button-wrapper button:hover {
+  animation-duration: .5s;
+  /**时间用时**/
+  animation-name: y;
+  /**所进行的转换**/
+}
+
+/**scss利用if-else写法**/
+@keyframes x {
+  0% {
+    transform: translateX(-10%);
+  }
+  25% {
+    transform: translateX(10%);
+  }
+  50% {
+    transform: translateX(-10%);
+  }
+  75% {
+    transform: translateX(10%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+/**css3动画写法**/
+@keyframes x2 {
+  0% {
+    transform: translateX(-10%);
+  }
+  25% {
+    transform: translateX(10%);
+  }
+  50% {
+    transform: translateX(-10%);
+  }
+  75% {
+    transform: translateX(10%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes y {
+  0% {
+    transform: translateY(-20%);
+  }
+  25% {
+    transform: translateY(20%);
+  }
+  50% {
+    transform: translateY(-20%);
+  }
+  75% {
+    transform: translateY(20%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes y2 {
+  0% {
+    transform: translateY(-20%);
+  }
+  25% {
+    transform: translateY(20%);
+  }
+  50% {
+    transform: translateY(-20%);
+  }
+  75% {
+    transform: translateY(20%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
