@@ -1,0 +1,112 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}/*一般CSS都会加这三个属性*/
+body {
+    background: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+   /* border: 1px solid red;不加上面三个属性，通过border会看到bug，即body无法全屏*/
+    min-height: 100vh;
+}
+@mixin buttonWithShadow($color) {/**当写一个重复使用的东西，就把他封装到函数里**/
+    background: $color;                
+    box-shadow: 0px 5px 0px 0px darken($color,15%);/*使用darken把颜色加深*/
+}
+.button-wrapper {
+    button {
+        padding: 10px 20px;
+        font-size: 20px;
+        border-radius: 4px;
+        border: none;
+        color: #fff;
+        margin: 0 40px;
+        &:first-child {
+            $blue: #55ACEE;
+            @include buttonWithShadow($blue);
+            &:hover {
+                animation-duration: .5s; /**时间用时**/
+                animation-name: x; /**所进行的转换**/
+            }
+        } 
+        &:nth-child(2) {
+            $green: #2ECC71;/*颜色使用两次，最好保存到一个变量里，便于修改*/
+            @include buttonWithShadow($green);
+        }
+        &:hover {
+            animation-duration: .5s; /**时间用时**/
+            animation-name: y; /**所进行的转换**/
+        }
+    }
+}
+$fn: 10%;
+/**scss利用if-else写法**/
+$step: 25%;
+@keyframes x {
+    @for $i from 0 to 4 {
+        #{$i * $step} {
+            @if $i % 2 == 0 {
+                transform: translateX(-$fn);
+            }@else {
+                transform: translateX($fn);
+            }            
+        }
+    }
+    100% {
+        transform: translateX(0);
+   }
+}
+/**css3动画写法**/
+@keyframes x2 {
+    0% {
+      transform: translateX(-$fn);
+    }
+    25% {
+        transform: translateX($fn);
+    }
+    50% {
+        transform: translateX(-$fn);
+    }
+    75% {
+        transform: translateX($fn);
+    }
+   100% {
+         transform: translateX(0);
+    }
+  }
+$n: 20%;
+$step: 25%;
+@keyframes y {
+    @for $i from 0 to 4 {
+        #{$i * $step} {
+            @if $i % 2 == 0 {
+                transform: translateY(-$n);
+            }@else {
+                transform: translateY($n);
+            }            
+        }
+    }
+    100% {
+        transform: translateY(0);
+   }
+}
+/**CSS3动画写法**/
+  @keyframes y2 {
+    0% {
+      transform: translateY(-$n);
+    }
+    25% {
+        transform: translateY($n);
+    }
+    50% {
+        transform: translateY(-$n);
+    }
+    75% {
+        transform: translateY($n);
+    }
+   100% {
+         transform: translateY(0);
+    }
+  }
